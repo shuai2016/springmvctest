@@ -3,4 +3,28 @@
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <bean id="myRealm1" class="shiro.MyRealm1"/>
+
+    <!-- 配置SecurityManager的管理 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!-- 配置需要使用的Realms -->
+        <property name="realm" ref="myRealm1"/>
+    </bean>
+
+    <!-- 配置shiro过滤器 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- 配置一个安全管理器 -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 出现错误之后的跳转路径配置 -->
+        <property name="loginUrl" value="/shiro/note"/>
+        <!-- 认证失败之后的跳转路径页面 -->
+        <property name="unauthorizedUrl" value="/manage/enduser/unauthorized"/>
+        <!-- shiro需要针对所有路径进行配置 -->
+        <property name="filterChainDefinitions">
+            <value>
+                /shiro/login=authc
+            </value>
+        </property>
+    </bean>
+
 </beans>

@@ -14,6 +14,10 @@ import java.util.List;
 import java.util.Set;
 
 public class MyRealm1 extends AuthorizingRealm {
+	public MyRealm1() {
+		System.out.println("MyRealm1扫描到了！！！");
+	}
+
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		//获取传过来的用户名
