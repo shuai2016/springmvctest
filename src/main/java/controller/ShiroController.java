@@ -53,4 +53,18 @@ public class ShiroController {
 		PrintWriter out = response.getWriter();
 		out.print("您没有相应的权限");
 	}
+
+	@RequestMapping("addPermission")
+	public void addPermission(HttpServletResponse response) throws IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.print("添加权限");
+	}
+
+	@RequestMapping("deletePermission")
+	public void deletePermission(HttpServletResponse response) throws IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.print("删除权限");
+	}
 }

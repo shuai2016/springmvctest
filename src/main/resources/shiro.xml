@@ -19,7 +19,11 @@
         <property name="loginUrl" value="/shiro/login"/>
         <!-- 认证失败之后的跳转路径页面 -->
         <property name="unauthorizedUrl" value="/shiro/message"/>
-        <!-- shiro需要针对所有路径进行配置 -->
+        <!-- 自定义一个类，动态为路径添加角色权限等信息 -->
+        <property name="filterChainDefinitionMap" ref="chainDefinitionSectionMetaSource" />
+    </bean>
+    <bean id="chainDefinitionSectionMetaSource" class="shiro.ChainDefinitionSectionMetaSource">
+
         <property name="filterChainDefinitions">
             <value>
                 /shiro/addRole=authc,roles[role1],perms[add1]
