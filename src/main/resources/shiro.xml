@@ -16,13 +16,14 @@
         <!-- 配置一个安全管理器 -->
         <property name="securityManager" ref="securityManager"/>
         <!-- 出现错误之后的跳转路径配置 -->
-        <property name="loginUrl" value="/shiro/note"/>
+        <property name="loginUrl" value="/shiro/login"/>
         <!-- 认证失败之后的跳转路径页面 -->
-        <property name="unauthorizedUrl" value="/manage/enduser/unauthorized"/>
+        <property name="unauthorizedUrl" value="/shiro/message"/>
         <!-- shiro需要针对所有路径进行配置 -->
         <property name="filterChainDefinitions">
             <value>
-                /shiro/login=authc
+                /shiro/addRole=authc,roles[role1],perms[add1]
+                /shiro/deleteRole=authc,roles[role3],perms[delete3]
             </value>
         </property>
     </bean>
