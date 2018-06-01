@@ -3,6 +3,8 @@ package controller;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.util.SavedRequest;
+import org.apache.shiro.web.util.WebUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +27,7 @@ public class UserController {
 	}
 
 	@RequestMapping("validate")
-	public String validate(ModelMap modelMap, String username, String password){
+	public String validate(HttpServletRequest request, ModelMap modelMap, String username, String password){
 
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
@@ -37,6 +39,17 @@ public class UserController {
 		} catch (UnknownAccountException e) {
 			modelMap.put("message", "帐号不存在，当前用户："+token.getPrincipal());
 		}
+		//如果是因为访问其他路径儿跳转到登录页面，savedRequest将有值即想要访问的页面
+		SavedRequest savedRequest = WebUtils.getSavedRequest(request);
+		if(savedRequest !=null){
+			String requestUrl = savedRequest.getRequestUrl();
+			System.out.println(requestUrl);
+		}
 		return "validate";
+	}
+
+	@RequestMapping("message")
+	public String message(){
+		return "message";
 	}
 }

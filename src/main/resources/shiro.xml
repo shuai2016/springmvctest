@@ -16,7 +16,7 @@
         <!-- 配置一个安全管理器 -->
         <property name="securityManager" ref="securityManager"/>
         <!-- 出现错误之后的跳转路径配置 -->
-        <property name="loginUrl" value="/shiro/login"/>
+        <property name="loginUrl" value="/admin/login"/>
         <!-- 认证失败之后的跳转路径页面 -->
         <property name="unauthorizedUrl" value="/shiro/message"/>
         <!-- 自定义一个类，动态为路径添加角色权限等信息 -->
