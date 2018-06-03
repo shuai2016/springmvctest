@@ -15,4 +15,10 @@ public class HelloWorldController {
 	public String hello() {
 		return "Hello World!!!";
 	}
+
+	@ResponseBody
+	@RequestMapping("mypc")
+	public String mypc(){
+		return "自己电脑测试";
+	}
 }
