@@ -17,7 +17,7 @@ public class HelloWorldController {
 	}
 
 	@ResponseBody
-	@RequestMapping("mypc")
+	@RequestMapping(value = "/mypc", produces = "application/json; charset=utf-8")
 	public String mypc(){
 		return "自己电脑测试";
 	}
