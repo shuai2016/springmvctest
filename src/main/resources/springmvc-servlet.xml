@@ -8,10 +8,18 @@
     <context:component-scan base-package="controller"/>
 
     <!-- Spring3.1开始的注解 HandlerMapping -->
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+        <property name="interceptors">
+            <list>
+                <ref bean="myHandlerInterceptor"/>
+            </list>
+        </property>
+    </bean>
 
     <!-- Spring3.1开始的注解HandlerAdapter -->
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
+
+    <bean id="myHandlerInterceptor" class="interceptor.MyHandlerInterceptor"/>
 
     <!-- 配置freeMarker视图解析器 -->
     <bean id="ftlViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
