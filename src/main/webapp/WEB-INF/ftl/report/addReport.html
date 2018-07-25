@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="jsAndCss/jquery-3.3.1.min.js"></script>
+    <title>添加报告</title>
+</head>
+<body>
+<form action="addReportDo" method="post" id="addForm">
+    <table border="1">
+        <tr>
+            <td>报告名称</td>
+            <td><input type="text" name="title"></td>
+        </tr>
+        <tr>
+            <td>报告内容</td>
+            <td><input type="text" name="note"></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center"><input type="button" value="提交" onclick="addReport()"></td>
+        </tr>
+    </table>
+</form>
+<script>
+ $(function(){
+     alert(123);
+ });
+ function addReport(){
+     var data = $("#addForm").serialize();
+     $.ajax({
+         url : "addReportDo",   //请求url
+         type : "POST",  //请求类型  post|get
+         data : data,
+         dataType : "text",  //返回数据的 类型 text|json|html--
+         success : function(result){  //回调函数 和 后台返回的 数据
+             alert(result);
+         }
+     });
+ }
+</script>
+</body>
+</html>
