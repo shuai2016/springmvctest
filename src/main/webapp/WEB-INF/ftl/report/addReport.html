@@ -10,11 +10,11 @@
     <table border="1">
         <tr>
             <td>报告名称</td>
-            <td><input type="text" name="title"></td>
+            <td><input type="text" name="title" id="title"></td>
         </tr>
         <tr>
             <td>报告内容</td>
-            <td><input type="text" name="note"></td>
+            <td><input type="text" name="note" id="note"></td>
         </tr>
         <tr>
             <td colspan="2" align="center"><input type="button" value="提交" onclick="addReport()"></td>
@@ -26,11 +26,26 @@
      alert(123);
  });
  function addReport(){
-     var data = $("#addForm").serialize();
+     var goods1 = {
+         goodsNumber: "001",
+         goodsName: "商品A"
+     }
+     var goods2 = {
+         goodsNumber: "002",
+         goodsName: "商品B"
+     }
+     var goodsList = [goods1,goods2];
+     var data = {
+         title: $("#title").val(),
+         note: $("#note").val(),
+         goodsList: goodsList
+     };
+     console.log(data);
      $.ajax({
          url : "addReportDo",   //请求url
          type : "POST",  //请求类型  post|get
-         data : data,
+         data : JSON.stringify(data),
+         contentType : "application/json",
          dataType : "text",  //返回数据的 类型 text|json|html--
          success : function(result){  //回调函数 和 后台返回的 数据
              alert(result);
